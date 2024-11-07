@@ -7,4 +7,4 @@ install: .venv
 	python -m venv .venv
 
 test:
-	. .venv/bin/activate && python -m pytest
+	. .venv/bin/activate && python -m pytest -vv -s

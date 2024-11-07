@@ -31,7 +31,58 @@ class Matrix:
         self._values = new_values
         return self
 
+    def __matmul__(self, b: Matrix) -> Matrix:
+        assert (
+            self.dim[0] == b.dim[1]
+        ), "Number of columns of A must be equal to number of rows in B in A @ B"
 
-    # def __matmul__(self, b: Matrix) -> Matrix:
-    #     assert self.dim[0] == b.dim[1], "Number of columns of A must be equal to number of rows in B in A @ B"
-    #     for row in 
+        def row_x_col(a: list[Number], b: list[Number]):
+            return sum(n * m for n, m in zip(a, b))
+
+        j = 0
+        result = []
+        while j < self.dim[0]:
+            left_row = self._values[j]
+            k = 0
+            while k < b.dim[1]:
+                right_col = [c[k] for c in b._values]
+                value = row_x_col(left_row, right_col)
+                result.append(value)
+                k += 1
+            j += 1
+
+        dim = (self.dim[0], b.dim[1])
+        # reconstruct the Matrix
+        values = []
+        row = []
+
+        for v in result:
+            row.append(v)
+            if len(row) == dim[0]:
+                values.append(row)
+                row = []
+
+        return Matrix(values=values)
+
+
+    # def strassen_matmul(self, b: Matrix) -> Matrix:
+    #     """Calculate the matrix multiplication with Strasen algorithm"""
+    #     assert (
+    #         self.dim == b.dim 
+    #     ), "A and B must be square matrix "
+
+    #     # create an empty matrix of correct size
+    #     size = self.dim[0] * b.dim[1]
+    #     entry = [0] * size
+    #     values = []
+    #     row = []
+        
+    #     for v in entry:
+    #         row.append(v)
+    #         if len(row) == self.dim[0]:
+    #             values.append(row)
+    #             row = []
+
+    #     for i in range(0, b.dim[1]):
+    #         for j in range(0, )
+
