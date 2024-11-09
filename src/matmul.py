@@ -65,24 +65,3 @@ class Matrix:
         return Matrix(values=values)
 
 
-    # def strassen_matmul(self, b: Matrix) -> Matrix:
-    #     """Calculate the matrix multiplication with Strasen algorithm"""
-    #     assert (
-    #         self.dim == b.dim 
-    #     ), "A and B must be square matrix "
-
-    #     # create an empty matrix of correct size
-    #     size = self.dim[0] * b.dim[1]
-    #     entry = [0] * size
-    #     values = []
-    #     row = []
-        
-    #     for v in entry:
-    #         row.append(v)
-    #         if len(row) == self.dim[0]:
-    #             values.append(row)
-    #             row = []
-
-    #     for i in range(0, b.dim[1]):
-    #         for j in range(0, )
-
